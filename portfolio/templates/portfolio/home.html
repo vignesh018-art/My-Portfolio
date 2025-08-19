@@ -1,0 +1,382 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{% static 'images/fevicon.png' %}">
+
+  <title>MY | Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(45deg, #ff512f, #dd2476);
+    }
+    .navbar-brand, .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      color: white;
+      text-align: center;
+      background: url('https://source.unsplash.com/1600x900/?technology,coding') center/cover no-repeat;
+    }
+    .hero-overlay {
+      background: rgba(0,0,0,0.6);
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+    }
+
+    /* Floating Shapes */
+    .floating-icons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0; left: 0;
+      z-index: 0;
+    }
+    .floating-icons span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.3);
+      animation: move 15s linear infinite;
+      bottom: -150px;
+    }
+    @keyframes move {
+      0% {transform: translateY(0) rotate(0deg);}
+      100% {transform: translateY(-1000px) rotate(720deg);}
+    }
+
+    /* Section Styling */
+    .section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    /* About Section */
+    #about {
+      background: linear-gradient(135deg, #ffecd2, #300202);
+      color: #222;
+    }
+
+    /* Skills Section */
+    #skills {
+      background: linear-gradient(135deg, #350a42, #96e6a1);
+    }
+    .progress {
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      animation: fillBar 2s ease-in-out;
+    }
+    @keyframes fillBar {
+      from { width: 0; }
+      to { width: var(--final-width); }
+    }
+
+    /* Projects Section */
+    #projects {
+      background: linear-gradient(135deg, #3d4909, #c2e9fb);
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(135deg, #fddb92, #462b08);
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">🌟 Vigneshkumar</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+<section class="hero d-flex align-items-center" 
+    style="min-height:100vh; background: linear-gradient(135deg, #1a1a2e, #16213e); position:relative; overflow:hidden;">
+
+    <!-- Floating overlay -->
+    <div class="floating-icons">
+        <span style="left:10%;"></span>
+        <span style="left:30%; width:40px; height:40px;"></span>
+        <span style="left:50%;"></span>
+        <span style="left:70%; width:25px; height:25px;"></span>
+        <span style="left:90%; width:15px; height:15px;"></span>
+    </div>
+
+    <div class="container position-relative" style="z-index:2;">
+        <div class="row align-items-center">
+            
+            <!-- Left side: Text -->
+            <div class="col-md-6 text-light">
+               <h1 style="font-size:3.5rem; font-weight:700;">
+                    Hi, I am 
+                    <span style="
+                    background: linear-gradient(90deg, rgb(216, 215, 224) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;">
+                Vigneshkumar Gurusamy
+                    </span>
+                </h1>
+
+                <p class="lead mt-3">
+                    <span id="typed-text"></span>
+                </p>
+                <a href="#projects" class="btn btn-lg btn-warning mt-4">🚀 Explore My Work</a>
+            </div>
+
+            <!-- Right side: Photo -->
+            <div class="col-md-6 text-center">
+                 <img src="{% static 'images/myimg.jpeg' %}" 
+                 alt="Vigneshkumar" 
+                 class="img-fluid rounded-circle shadow-lg" 
+                 style="max-width: 320px; border:5px solid #ffd700;">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Typed.js script -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed("#typed-text", {
+    strings: [
+      "💻 Full Stack Developer",
+      "🐍 Python & Django Enthusiast",
+      "⚡ JavaScript Explorer",
+    ],
+    typeSpeed: 70,
+    backSpeed: 40,
+    loop: true
+  });
+</script>
+
+
+  <!-- About Section -->
+  <section id="about" class="section container py-5">
+    <h2 class="section-title">About Me</h2>
+    <p class="text-center">I am a Begginer to passionate Full Stack Developer specializing in Django, Python, and modern web technologies.</p>
+  </section>
+
+  <!--Skill Section-->
+  <section id="skills" class="section py-5" style="background: linear-gradient(135deg,#110d07,#fcb69f);">
+  <div class="container">
+    <h2 class="section-title text-center">My Skills</h2>
+    <div class="row text-center">
+
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-lg border-0 p-4 rounded-4">
+          <i class="fab fa-python fa-3x text-warning mb-3"></i>
+          <h5>Python</h5>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-lg border-0 p-4 rounded-4">
+          <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+          <h5>Django</h5>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-lg border-0 p-4 rounded-4">
+          <i class="fab fa-js fa-3x text-warning mb-3"></i>
+          <h5>JavaScript</h5>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-lg border-0 p-4 rounded-4">
+          <i class="fab fa-react fa-3x text-info mb-3"></i>
+          <h5>React</h5>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Projects Section -->
+  <section id="projects" class="section py-5">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card p-3 shadow-sm">
+            <h5>🌐 Portfolio Website</h5>
+            <p>A personal portfolio built with Django & Bootstrap.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Follow Me Section -->
+<section id="follow" class="section py-5" style="background: linear-gradient(135deg,#570407,#fad0c4);">
+  <div class="container text-center">
+    <h2 class="section-title text-dark mb-5">📲 Follow Me</h2>
+
+    <div class="row justify-content-center">
+
+      <!-- Instagram Card -->
+      <div class="col-md-3 col-6 mb-4">
+        <a href="https://www.instagram.com/_.itz.vicky_" target="_blank" class="text-decoration-none">
+          <div class="card shadow-lg border-0 p-4 rounded-4 text-center" 
+               style="background:#0c0b0b; transition: transform 0.3s;">
+            <i class="fab fa-instagram fa-5x mb-3" style="color:#E1306C;"></i>
+            <h5 class="text-white">Instagram</h5>
+          </div>
+        </a>
+      </div>
+
+      <!-- LinkedIn Card -->
+      <div class="col-md-3 col-6 mb-4">
+        <a href="https://www.linkedin.com/in/Vigneshkumar-Gurusamy" target="_blank" class="text-decoration-none">
+          <div class="card shadow-lg border-0 p-4 rounded-4 text-center" 
+               style="background:#080808; transition: transform 0.3s;">
+            <i class="fab fa-linkedin fa-5x mb-3" style="color:#0077b5;"></i>
+            <h5 class="text-white">LinkedIn</h5>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="section container py-5">
+    <h2 class="section-title">Get In Touch</h2>
+    <form class="mx-auto" style="max-width: 600px;">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Your Name">
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Your Email">
+      </div>
+      <div class="mb-3">
+        <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+      </div>
+      <button class="btn btn-dark w-100">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-3">
+    <p>🌟 © 2025 Vigneshkumar Gurusamy | Built with ❤️ using Django</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Typed.js Script -->
+  <script>
+    var typed = new Typed("#typed-text", {
+      strings: [
+        "💻 Full Stack Developer",
+        "🐍 Python & Django Enthusiast",
+        "⚡ JavaScript Explorer",
+        "🎨 UI/UX Lover"
+      ],
+      typeSpeed: 70,
+      backSpeed: 40,
+      loop: true
+    });
+  </script>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    document.addEventListener("scroll", function() {
+      let sections = document.querySelectorAll(".section");
+      sections.forEach(sec => {
+        let position = sec.getBoundingClientRect().top;
+        let screenHeight = window.innerHeight;
+        if (position < screenHeight - 100) {
+          sec.classList.add("visible");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
